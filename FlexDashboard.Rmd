@@ -1,0 +1,51 @@
+---
+title: "Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(dplyr) 
+library(leaflet)
+library(gsheet)
+if(!file.exists('violence.RData')){
+  download.file('https://github.com/databrew/intro-to-data-science/blob/main/data/GEDEvent_v21_1.RData?raw=true', 'violence.RData')
+}
+load('violence.RData')
+vio <- GEDEvent_v21_1; rm(GEDEvent_v21_1)
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+viosubset <- vio %>% filter(year == 1990 | year == 2020)
+
+leaflet() %>% 
+  addProviderTiles(providers$Esri.WorldImagery) %>%
+  addCircleMarkers(viosubset$latitude, viosubset$longitude, color = viosubset$year)
+  
+#addLegend("Violence in 1990 and 2020.", colors = c("red", "purple"))
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+```
+
+### Chart C
+
+```{r}
+
+```
+

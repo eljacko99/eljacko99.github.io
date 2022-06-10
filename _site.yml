@@ -1,0 +1,16 @@
+name: "Jack"
+output_dir: "eljacko99.github.io"
+navbar: 
+  title: "Jack"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - text: "COOKIES!!!"
+      href: CookieMonster.html
+    - text: "SewaneeCS"
+      href: link.html
+    - text: "Far Side"
+      href: FarSide.html
+    

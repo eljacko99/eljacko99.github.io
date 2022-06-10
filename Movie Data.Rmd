@@ -1,0 +1,84 @@
+---
+title: "Movie Data (DataLab Week 2, Day 1)"
+author: "Jack Haight"
+date: '2022-06-06'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(ggplot2)
+library(dplyr)
+movies <- read_csv('https://raw.githubusercontent.com/ericmkeen/capstone/master/movies.csv')
+```
+
+
+I set out to answer two questions: Is there a connection between movie runtimes and movie ratings and does Peter Jackson make longer than average movies? We will answer the first question with the graphs below. 
+
+```{r}
+ggplot(data = movies, aes(y = rating_imdb, x = runtime)) + 
+  geom_jitter(alpha = 0.3, width = 0) + 
+  geom_smooth()
+
+
+ggplot(data = movies, aes(y = rating_meta, x = runtime)) + 
+  geom_jitter(alpha = 0.3, width = 0) + 
+  geom_smooth()
+
+```
+
+
+The dataset provided us with two metrics for ratings, ratings from IMDB and ratings from Metacritic. The chart on top is a scatterplot that doesn't appear to support much of a correlation. The x-axis represents runtime and the y-axis represents IMDB ratings. However, there is not much of a trend. I added the geom_smooth function to see if a linear trend could be detected and there appears to be a slight upward tick in IMDB ratings as runtime increases. However this trend is shortlived, as there are not many films with a runtime of four hours or more.
+
+
+```{r}
+peterjackson <- movies %>% filter(director == "Peter Jackson")
+
+ggplot(data = peterjackson, aes(x = runtime )) + geom_histogram()
+mean(peterjackson$runtime)
+mean(movies$runtime)
+sd(movies$runtime)
+
+```
+
+
+Peter Jackson's movies are too long! His average film is roughly 177 minutes long, whereas the average runtime in the entire dataset is about 122 minutes long. That means this man makes films whose average runtime is approximately two full standard deviations above the mean of the entire dataset! That's f***ing unacceptable!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

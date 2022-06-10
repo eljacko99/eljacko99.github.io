@@ -1,0 +1,31 @@
+---
+title: "Curriculum Vitae"
+author: "Jack Haight"
+date: '2022-06-09'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## Name
+
+_Jack Haight_
+
+## Interests
+
+_Mathematics_
+
+_Computer Science_
+
+## Education
+
+_Sewanee: University of the South 2017-2021 (B.S. Mathematics, computer science minor)_
+
+_University of Tennessee 2021-present (PhD Mathematics)_
+
+
+

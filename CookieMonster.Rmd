@@ -1,0 +1,12 @@
+---
+title: "Cookie Monster"
+author: "Jack Haight"
+date: '2022-06-10'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+![Cookie monster](Cookiemonster.png)

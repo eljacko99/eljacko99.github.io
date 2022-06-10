@@ -1,0 +1,43 @@
+---
+title: "Malaria Report"
+author: "Jack Haight"
+date: '2022-06-09'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+library(ggthemes)
+
+pms <- read_csv('https://github.com/databrew/intro-to-data-science/blob/main/data/pms.csv?raw=true')
+
+```
+
+![An anopheles mosquito, the type of mosquito known to transmit malaria.](Anophelesmosquito.jpeg)
+
+
+## About the dataset
+This dataset contains information about hospital visits made to various hospitals in Mozambique between January 1, 2021 and April 22, 2022. The variable in this dataset of particular interest is the `malaria_diagnosis` variable. We are interested in answering various questions about malaria visits made to these hospitals. 
+
+
+
+## What is the age distribution of those who have gotten malaria?
+
+
+```{r}
+agedata <- pms %>% 
+  filter(malaria_diagnosis == 'Malaria') %>%
+  group_by(age) %>%
+  tally %>%
+  arrange(desc(n))
+
+agedata
+```
+
+## What is the distribution of those who have gotten malaria by gender?
+
+

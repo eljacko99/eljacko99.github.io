@@ -1,0 +1,30 @@
+---
+title: "MovieDataJackH"
+author: "Jack Haight"
+date: '2022-06-06'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(ggplot2)
+library(dplyr)
+movies <- read_csv('https://raw.githubusercontent.com/ericmkeen/capstone/master/movies.csv')
+```
+
+3. Is there a correlation between online film ratings and runtime? 
+
+No.
+
+
+```{r}
+ggplot(data = movies, aes(y = rating_imdb, x = runtime)) + 
+  geom_jitter(alpha = 0.3, width = 0) + 
+  geom_smooth()
+
+
+ggplot(data = movies, aes(y = rating_meta, x = runtime)) + 
+  geom_jitter(alpha = 0.3, width = 0) + 
+  geom_smooth()
+```

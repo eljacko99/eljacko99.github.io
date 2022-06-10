@@ -1,0 +1,83 @@
+---
+title: "babynames"
+author: "Jack Haight"
+date: '2022-06-02'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+library(babynames)
+```
+
+Notes from Rudd lecture on examples babynames package.
+
+
+
+
+
+
+```{r}
+names(babynames)
+head(babynames)
+babynames %>% filter(year == 1880) %>% group_by(sex) %>% tally() # number of names, not babies.
+# tally up number of baby names by year and by sex
+df <- babynames %>% group_by(year, sex) %>% tally()
+head(df)
+ggplot(data = df, aes(x = year, y = n, color = sex)) + geom_line()
+
+ggplot() + geom_line(data = df, aes(x = year, y =n, color = sex)) + labs(title = "unique names over time", subtitle = "By sex", caption = "DataLab 2022")
+
+ggplot(data = df, aes(x = year, y = n)) + geom_line() + facet_wrap(~sex)
+
+ggplot(data = df, aes(x = year, y = n)) + geom_line() + facet_wrap(~sex, ncol=1) + labs(title = "Unique names over time", subtitle = "By sex", caption = "DataLab 2022")
+
+
+newdf <- babynames %>% select(year, sex, name, n)
+head(newdf)
+
+#Total number of babies of each sex per year
+
+#Monae:
+babies_per_year <- babynames %>% group_by(year, sex) %>% tally(n)
+head(babies_per_year)
+
+#OR
+
+#Carter:
+also_babies_per_year <- babynames %>% group_by(year, sex) %>% summarise(total = sum(n))
+head(also_babies_per_year)
+
+# plot number of babies per year by sex
+ggplot(data = also_babies_per_year, aes(x = year, y = total)) + geom_line() + facet_wrap(~sex, ncol = 1)
+
+
+
+
+
+
+newbabynames <- babynames %>% group_by(year, sex) %>% summarise(total = sum(n)) %>% summarize(total = sum(total))
+head(newbabynames)
+
+call_name = "Karen"
+karen <- babynames %>% filter(name == call_name, sex == 'F')
+head(karen)
+
+ggplot(data = karen, aes(x = year, y = n)) + geom_line()
+
+ggplot(data = karen, aes(x = year, y = prop)) + geom_line()
+
+ruddkaren <- babynames %>% filter(name == "Karen")
+ggplot(data = ruddkaren, aes(x = year, y = n)) + geom_line() + labs(title = "Karens across the years", subtitle = "God help us", caption = "Go get your manager")
+
+
+
+
+
+
+
+
+
+```
